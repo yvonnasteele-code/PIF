@@ -279,21 +279,21 @@ section{margin-top:40px}
     <div class="fb">
       <div class="kick">Quick feedback</div>
       <h2 class="h2" style="font-size:22px;margin-top:8px">Was this issue useful?</h2>
-      <p class="lead" style="margin-top:7px">One tap opens a short, pre-filled email. It takes seconds, and it shapes what the next issue covers.</p>
+      <p class="lead" style="margin-top:7px">One tap opens a quick rating form. It takes seconds, and it shapes what the next issue covers.</p>
       <div class="fbrow">
-        <a class="fbtn" href="mailto:harsh.singh@pahleindia.org?subject=Newsletter%2002%20feedback&body=This%20issue%20was%20very%20useful.">Very useful</a>
-        <a class="fbtn" href="mailto:harsh.singh@pahleindia.org?subject=Newsletter%2002%20feedback&body=This%20issue%20was%20somewhat%20useful.">Somewhat</a>
-        <a class="fbtn" href="mailto:harsh.singh@pahleindia.org?subject=Newsletter%2002%20feedback&body=This%20issue%20was%20not%20that%20useful.%20What%20would%20help%3A%20">Not really</a>
-        <a class="fbtn alt" href="https://docs.google.com/forms/d/e/1FAIpQLSewMLOxsJeGJ2mn-uameCWCdsWxJs3xU_gFYZDMukgENdyDaw/viewform?usp=sharing&amp;ouid=117061781758645208758" target="_blank" rel="noopener">Open the feedback form &#8594;</a>
+        <a class="fbtn" target="_blank" rel="noopener" href="https://docs.google.com/forms/d/e/1FAIpQLSdnCig7GyJK-yp5sDXjzEsSwCztmOw3UNt7gee9kR2VZ3-c6w/viewform?usp=pp_url&amp;entry.1033374636=Very+useful&amp;entry.1502828632=week2">Very useful</a>
+        <a class="fbtn" target="_blank" rel="noopener" href="https://docs.google.com/forms/d/e/1FAIpQLSdnCig7GyJK-yp5sDXjzEsSwCztmOw3UNt7gee9kR2VZ3-c6w/viewform?usp=pp_url&amp;entry.1033374636=Somewhat+useful&amp;entry.1502828632=week2">Somewhat</a>
+        <a class="fbtn" target="_blank" rel="noopener" href="https://docs.google.com/forms/d/e/1FAIpQLSdnCig7GyJK-yp5sDXjzEsSwCztmOw3UNt7gee9kR2VZ3-c6w/viewform?usp=pp_url&amp;entry.1033374636=Not+useful&amp;entry.1502828632=week2">Not really</a>
+        <a class="fbtn alt" target="_blank" rel="noopener" href="https://docs.google.com/forms/d/e/1FAIpQLSewMLOxsJeGJ2mn-uameCWCdsWxJs3xU_gFYZDMukgENdyDaw/viewform?usp=pp_url&amp;entry.32626336=week2">Open the feedback form &#8594;</a>
       </div>
-      <div class="fbthanks" id="fbthanks">Thanks. Your email app should open with a note ready, just hit send.</div>
+      <div class="fbthanks" id="fbthanks">Thanks. A quick form opens in a new tab, just confirm your rating and hit submit.</div>
     </div>
   </section>
 
   <div class="dfoot">
     <div class="dcards">
-      <div class="dcard"><div class="h">Questions? Contact Harsh</div><div class="b">Harshvardhan Singh, Pahl&#233; India Foundation<br>harsh.singh@pahleindia.org</div><a class="mail" href="mailto:harsh.singh@pahleindia.org?subject=Swarna%20Andhra%20newsletter%20%E2%80%94%20question">Email Harsh &#8594;</a></div>
-      <div class="dcard"><div class="h">Share a doubt or feedback</div><div class="b">Use the quick check above, or open the full feedback form. For anything else, a note to Harsh reaches us just as well.</div><a class="mail" href="https://docs.google.com/forms/d/e/1FAIpQLSewMLOxsJeGJ2mn-uameCWCdsWxJs3xU_gFYZDMukgENdyDaw/viewform?usp=sharing&amp;ouid=117061781758645208758" target="_blank" rel="noopener">Open the feedback form &#8594;</a></div>
+      <div class="dcard"><div class="h">Questions? Contact Harsh</div><div class="b">Harshvardhan Singh, Pahl&#233; India Foundation<br>harsh.singh@pahleindia.org</div><a class="mail mail-smart" data-subject="Swarna Andhra newsletter - question" href="mailto:harsh.singh@pahleindia.org?subject=Swarna%20Andhra%20newsletter%20-%20question">Email Harsh &#8594;</a></div>
+      <div class="dcard"><div class="h">Share a doubt or feedback</div><div class="b">Use the quick check above, or open the full feedback form. For anything else, a note to Harsh reaches us just as well.</div><a class="mail" href="https://docs.google.com/forms/d/e/1FAIpQLSewMLOxsJeGJ2mn-uameCWCdsWxJs3xU_gFYZDMukgENdyDaw/viewform?usp=pp_url&amp;entry.32626336=week2" target="_blank" rel="noopener">Open the feedback form &#8594;</a></div>
     </div>
     <div class="dline"></div>
     <div class="coded"><div class="t">Centre for Data for Economic Decision-making (CoDED)</div>
@@ -363,5 +363,22 @@ section{margin-top:40px}
   });
 })();
 </script>
-<script>document.querySelectorAll('.fbtn[href^="mailto:"]').forEach(function(b){b.addEventListener("click",function(){var t=document.getElementById("fbthanks");if(t)t.style.display="block";});});</script>
+<script>document.querySelectorAll('.fbrow .fbtn:not(.alt)').forEach(function(b){b.addEventListener("click",function(){var t=document.getElementById("fbthanks");if(t)t.style.display="block";});});</script>
+<script>
+/* mail-smart: phone -> mail app (mailto); desktop browser -> Gmail compose in a new tab. Falls back to the mailto in href. */
+(function(){
+  var to="harsh.singh@pahleindia.org";
+  var mobile=/Android|iPhone|iPad|iPod|Mobile|Silk|Kindle/i.test(navigator.userAgent||"");
+  document.querySelectorAll("a.mail-smart").forEach(function(a){
+    var su=encodeURIComponent(a.getAttribute("data-subject")||"Swarna Andhra newsletter");
+    if(mobile){
+      a.setAttribute("href","mailto:"+to+"?subject="+su);
+    }else{
+      a.setAttribute("href","https://mail.google.com/mail/?view=cm&fs=1&to="+to+"&su="+su);
+      a.setAttribute("target","_blank");
+      a.setAttribute("rel","noopener");
+    }
+  });
+})();
+</script>
 </body></html>
